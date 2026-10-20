@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Anatomia da Velocidade</title>
+    <meta name="description" content="Um estudo em seis movimentos sobre o que faz um carro de Fórmula 1 cortar o ar a mais de 340 km/h." />
+    <meta name="theme-color" content="#070b1c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anatomia da Velocidade" />
+    <meta property="og:description" content="Um site 3D imersivo sobre um carro de Fórmula 1, contado pela rolagem." />
+    <meta property="og:url" content="https://alexfanis.github.io/anatomia-da-velocidade/" />
+    <meta property="og:image" content="https://alexfanis.github.io/anatomia-da-velocidade/og.jpg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="640" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="module" crossorigin src="./assets/index-DghHiUAe.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-SugQeOcu.css">
+  </head>
+  <body class="is-loading">
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <div class="loader" aria-live="polite">
+      <div class="loader__top mono">
+        <span>Anatomia / Velocidade</span>
+        <span>Estudo nº 01</span>
+      </div>
+      <div class="loader__stage">
+        <div class="loader__streaks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <!-- F1 vista de cima, em traço; cada peça se desenha numa janela do progresso (data-at). -->
+        <svg class="loader__car" viewBox="0 0 120 250" aria-hidden="true">
+          <g class="wing">
+            <path pathLength="1" data-at="0" d="M8 27Q60 13 112 27V34Q60 22 8 34Z" />
+            <path pathLength="1" data-at="0.03" d="M8 22V38M112 22V38" />
+          </g>
+          <path pathLength="1" data-at="0.08" d="M57 28Q60 16 63 28L66 84H54Z" />
+          <g class="tyre">
+            <path pathLength="1" data-at="0.16" d="M17 52h12a5 5 0 0 1 5 5v28a5 5 0 0 1-5 5h-12a5 5 0 0 1-5-5v-28a5 5 0 0 1 5-5Z" />
+            <path pathLength="1" data-at="0.16" d="M91 52h12a5 5 0 0 1 5 5v28a5 5 0 0 1-5 5h-12a5 5 0 0 1-5-5v-28a5 5 0 0 1 5-5Z" />
+          </g>
+          <path pathLength="1" data-at="0.24" d="M34 62L55 67M34 80L55 76M86 62L65 67M86 80L65 76" />
+          <path pathLength="1" data-at="0.3" d="M54 84L50 104Q36 108 32 124L33 160Q36 182 50 196L54 212H66L70 196Q84 182 87 160L88 124Q84 108 70 104L66 84" />
+          <path pathLength="1" data-at="0.4" d="M60 92a6 11 0 1 0 0.01 0M51 101Q60 86 69 101" />
+          <path pathLength="1" data-at="0.48" d="M60 120V204M39 126Q45 116 53 116M81 126Q75 116 67 116" />
+          <g class="tyre">
+            <path pathLength="1" data-at="0.56" d="M15 168h15a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6h-15a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6Z" />
+            <path pathLength="1" data-at="0.56" d="M90 168h15a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6h-15a6 6 0 0 1-6-6v-36a6 6 0 0 1 6-6Z" />
+          </g>
+          <path pathLength="1" data-at="0.64" d="M36 184L50 186M84 184L70 186M60 212V224" />
+          <g class="wing">
+            <path pathLength="1" data-at="0.7" d="M30 224H90V236H30Z" />
+            <path pathLength="1" data-at="0.74" d="M30 220V240M90 220V240M32 230H88" />
+          </g>
+          <path class="light" pathLength="1" data-at="0.8" d="M56 245H64" />
+        </svg>
+        <p class="loader__count mono"><span data-count>000</span> %</p>
+      </div>
+      <div class="loader__meta mono">
+        <span>Aquecendo os pneus</span>
+        <span class="loader__bar"><i data-loader-bar></i></span>
+        <span data-loader-size>—</span>
+      </div>
+    </div>
+
+    <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+    <header class="chrome chrome--top">
+      <a class="wordmark mono" href="#abertura" data-cursor>Anatomia<span>/</span>Velocidade</a>
+      <div class="paint mono" role="group" aria-label="Pintura">
+        <span class="paint__label">Pintura</span>
+        <button type="button" class="swatch is-active" data-paint="original" style="--c: #10183a" aria-label="Original" data-cursor="Original"></button>
+        <button type="button" class="swatch" data-paint="branco" style="--c: #f4f4f6" aria-label="Branco" data-cursor="Branco"></button>
+        <button type="button" class="swatch" data-paint="vermelho" style="--c: #d0142c" aria-label="Vermelho" data-cursor="Vermelho"></button>
+        <button type="button" class="swatch" data-paint="preto" style="--c: #0b0b0c" aria-label="Preto" data-cursor="Preto"></button>
+        <button type="button" class="swatch" data-paint="laranja" style="--c: #ff7a12" aria-label="Laranja" data-cursor="Laranja"></button>
+      </div>
+      <nav class="chrome__right mono" aria-label="Controles">
+        <button class="sound-toggle" type="button" aria-pressed="false" data-cursor>
+          <span class="sound-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          Som <b data-sound-state>off</b>
+        </button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" data-cursor>Índice</button>
+      </nav>
+    </header>
+
+    <div class="menu" id="menu">
+      <ol class="menu__list">
+        <li><a href="#abertura" data-cursor><span class="mono">01</span>Abertura</a></li>
+        <li><a href="#aerodinamica" data-cursor><span class="mono">02</span>Aerodinâmica</a></li>
+        <li><a href="#explosao" data-cursor><span class="mono">03</span>Peça por peça</a></li>
+        <li><a href="#freios" data-cursor><span class="mono">04</span>Pneus e freios</a></li>
+        <li><a href="#velocidade" data-cursor><span class="mono">05</span>Velocidade</a></li>
+        <li><a href="#largada" data-cursor><span class="mono">06</span>Largada</a></li>
+      </ol>
+      <p class="menu__foot mono">Role, arraste o carro, troque a pintura.</p>
+    </div>
+
+    <footer class="chrome chrome--bottom mono" aria-hidden="true">
+      <span class="section-index"><b data-section-num>01</b> / 06</span>
+      <span class="progress"><i data-progress></i></span>
+      <span class="section-name" data-section-name>Abertura</span>
+    </footer>
+
+    <div class="labels" aria-hidden="true">
+      <svg class="labels__lines"></svg>
+      <div class="label" data-anchor="frontwing"><b>01</b> Asa dianteira<small>Direciona o ar para o assoalho</small></div>
+      <div class="label" data-anchor="halo"><b>02</b> Halo<small>Titânio, aguenta 12 toneladas</small></div>
+      <div class="label" data-anchor="sidepod"><b>03</b> Sidepod<small>Resfria o motor e guia o fluxo</small></div>
+      <div class="label" data-anchor="floor"><b>04</b> Assoalho e difusor<small>Efeito solo: suga o carro para o chão</small></div>
+      <div class="label" data-anchor="rearwing"><b>05</b> Asa traseira e DRS<small>Abre na reta: menos arrasto</small></div>
+    </div>
+
+    <main>
+      <section class="hero" id="abertura" data-section="Abertura">
+        <p class="kicker mono">Estudo nº 01 — Monoposto de Fórmula 1</p>
+        <h1 class="hero__title" aria-label="Anatomia da velocidade">
+          <span class="line line--a" data-split>Anatomia</span>
+          <span class="line line--b" data-split><em>da</em> velocidade</span>
+        </h1>
+        <div class="hero__foot">
+          <p class="hero__lede">
+            Um estudo em seis movimentos sobre o que faz uma máquina de 752 kg cortar o ar a mais de 340 km/h.
+          </p>
+          <p class="scroll-hint mono"><span></span>Role para dissecar</p>
+        </div>
+      </section>
+
+      <section class="sec sec--aero" id="aerodinamica" data-section="Aerodinâmica">
+        <div class="sec__inner">
+          <div class="block block--tl">
+            <p class="sec__num mono" data-reveal>02 — Aerodinâmica</p>
+            <h2 class="sec__title" data-split>O ar como <em>ferramenta</em></h2>
+            <p class="sec__body" data-reveal>
+              Cada superfície existe para empurrar o carro contra o asfalto. A 250 km/h ele gera mais pressão
+              para baixo do que o próprio peso, e em teoria poderia andar de cabeça para baixo no teto de um túnel.
+            </p>
+          </div>
+          <dl class="data block--br" data-reveal>
+            <div><dt>Downforce em curva rápida</dt><dd><span data-count-to="5">0</span> G</dd></div>
+            <div><dt>Redução de arrasto com DRS</dt><dd>−<span data-count-to="10">0</span>%</dd></div>
+            <div><dt>Ar processado por segundo</dt><dd><span data-count-to="50">0</span> m³</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="sec sec--explode" id="explosao" data-section="Peça por peça">
+        <div class="sec__inner">
+          <div class="block block--tc">
+            <p class="sec__num mono" data-reveal>03 — Vista explodida</p>
+            <h2 class="sec__title" data-split>Peça por <em>peça</em></h2>
+          </div>
+          <p class="sec__body block--bl" data-reveal>
+            São cerca de 14 mil componentes. Separados em cinco conjuntos, da asa dianteira à traseira, todos se
+            prendem a uma célula de sobrevivência de fibra de carbono que pesa menos que uma pessoa adulta.
+          </p>
+        </div>
+      </section>
+
+      <section class="sec sec--brakes" id="freios" data-section="Pneus e freios">
+        <div class="sec__inner">
+          <div class="block block--tr card" data-reveal>
+            <p class="sec__num mono">04 — Pneus e freios</p>
+            <h2 class="sec__title" data-split>De 340 a <em>zero</em></h2>
+            <p class="sec__body">
+              Numa freada forte o carro sai de 300 para 80 km/h em menos de dois segundos. Os discos de carbono
+              passam de mil graus e o piloto sente até 5 G empurrando o corpo para a frente.
+            </p>
+          </div>
+          <div class="gauge block--bl">
+            <p class="mono gauge__label">Temperatura do disco</p>
+            <p class="gauge__value"><span data-temp>0</span><small>°C</small></p>
+            <span class="gauge__bar"><i data-temp-bar></i></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec--speed" id="velocidade" data-section="Velocidade">
+        <div class="sec__inner">
+          <div class="marquee" aria-hidden="true">
+            <div class="marquee__track" data-marquee>
+              <span>Velocidade máxima — 340 km/h — V6 turbo híbrido — 15.000 rpm —&nbsp;</span>
+              <span>Velocidade máxima — 340 km/h — V6 turbo híbrido — 15.000 rpm —&nbsp;</span>
+            </div>
+          </div>
+          <div class="block block--tl">
+            <p class="sec__num mono" data-reveal>05 — Velocidade</p>
+            <h2 class="sec__title" data-split>O mundo <em>passa</em></h2>
+            <p class="sec__body" data-reveal>
+              Um V6 de 1,6 litro com turbo e dois motores elétricos: perto de mil cavalos para menos de 800 kg
+              com piloto. De zero a 100 km/h em cerca de 2,6 segundos.
+            </p>
+          </div>
+          <div class="speedo">
+            <p class="speedo__value"><span data-speed>000</span></p>
+            <div class="speedo__meta mono">
+              <span>km/h</span>
+              <span>Marcha <b data-gear>N</b></span>
+              <span class="speedo__rpm"><i data-rpm></i></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec sec--start" id="largada" data-section="Largada">
+        <div class="sec__inner">
+          <div class="lights" aria-hidden="true">
+            <div class="lights__col"><i></i><i></i></div>
+            <div class="lights__col"><i></i><i></i></div>
+            <div class="lights__col"><i></i><i></i></div>
+            <div class="lights__col"><i></i><i></i></div>
+            <div class="lights__col"><i></i><i></i></div>
+          </div>
+          <div class="finale">
+            <p class="sec__num mono">06 — Largada</p>
+            <h2 class="finale__title" data-split>Luzes <em>apagadas.</em></h2>
+            <p class="finale__sub">E lá vamos nós.</p>
+            <div class="finale__cta">
+              <a class="btn btn--solid" href="#abertura" data-cursor data-magnetic>Ver de novo</a>
+              <button class="btn" type="button" data-cycle-paint data-cursor data-magnetic>Trocar a pintura</button>
+            </div>
+          </div>
+          <p class="credits">Site de estudo, sem fins comerciais. Modelo 3D de fã do RB16B. Sons: gravações reais em domínio público (Freesound: Ears68, wandererscapes). Marcas pertencem aos seus donos.</p>
+        </div>
+      </section>
+    </main>
+
+    <noscript><p class="noscript">Este site usa JavaScript e WebGL para mostrar o carro em 3D.</p></noscript>
+  </body>
+</html>
